@@ -15,6 +15,25 @@ var app = new Vue(
         el: '#root',
         data: {
 
+            emailRandom: null,
+            nVolte: null
+        },
+        created(){
+            
+            axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
+            .then((response) => {
+                console.log(response.data.response);
+                this.emailRandom = response.data.response;
+            });
+        },
+
+        methods: {
+            addnVolte: function(){
+                if(this.nVolte){
+                    this.emailRandom.push(this.nVolte)
+                }
+            }
+
         },
         
     }
