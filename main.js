@@ -10,31 +10,34 @@ generati.
  */
 
 
-var app = new Vue(
-    {
-        el: '#root',
-        data: {
+var app = new Vue({
+    el: '#root',
+    data: {
 
-            emailRandom: null,
-            nVolte: null
-        },
-        created(){
-            
+        emailRandom: []
+
+
+    },
+    created() {
+        for (let i = 0; i < 10; i++) {
             axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
-            .then((response) => {
-                console.log(response.data.response);
-                this.emailRandom = response.data.response;
-            });
-        },
+                .then((response) => {
+                    console.log(response.data.response);
+                    this.emailRandom.push(response.data.response);
+                });
 
-        methods: {
-            addnVolte: function(){
-                if(this.nVolte){
-                    this.emailRandom.push(this.nVolte)
-                }
+        }
+
+    },
+
+    methods: {
+        /*addnVolte: function(){
+            if(this.nVolte){
+                this.emailRandom.push(this.nVolte)
             }
+        }*/
 
-        },
-        
-    }
-)
+
+    },
+
+})
